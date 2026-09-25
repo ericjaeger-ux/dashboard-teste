@@ -1,18 +1,20 @@
 # Visão de métricas
 
-Painel Supernova em HTML e CSS puros, com SVG inline e fontes locais. Ele aplica o tema GitHub fornecido em `theme/supernova-github.theme.json`, sem exigir npm, React, Tailwind ou JavaScript.
+Painel Supernova em React, Vite, Tailwind CSS e shadcn/ui. A implementação usa o preset shadcn `b3lo4W8LA`: estilo Luma, base Stone, fonte Geist, raio pequeno, azul primário e gráficos laranja.
 
 ## Arquivos
 
-- `index.html`: conteúdo e gráficos estáticos.
-- `styles.css`: tokens semânticos, tipografia Inter/Geist Mono e layout responsivo.
-- `fonts/`: Inter Variable e Geist Mono em WOFF2.
+- `src/App.tsx`: dashboard responsiva, gráficos SVG e dados demonstrativos.
+- `src/index.css`: tokens de tema claro e escuro do preset.
+- `src/components/ui/`: componentes `Card` e `Switch` do shadcn/ui.
+- `components.json`: configuração do preset, incluindo a stack Vite e `base-luma`.
+- `package.json`: scripts e dependências do projeto.
 - `theme/supernova-github.theme.json`: cópia do tema de origem aplicado ao painel.
 - `reference/metrics-overview.json`: componente publicado usado como referência, preservado sem execução.
 
 ## Tema e aparência
 
-O painel preserva a grade, os indicadores e as séries da referência, com largura máxima de 1152px. Seus tokens de superfície, texto, borda, raio e gráficos vêm do tema GitHub. O switch no canto superior direito alterna claro e escuro e guarda a escolha neste navegador. Os gráficos usam o token semântico `--color-data-emphasis`, apontado para o azul primário do tema; no modo escuro, um halo claro mantém cada barra e linha discernível.
+O painel preserva a grade, os indicadores e as séries da referência, com largura máxima de 1152px. O switch no canto superior direito alterna claro e escuro e guarda a escolha neste navegador. O azul é reservado ao acento e aos indicadores; como definido pelo preset, as séries de gráficos usam laranja.
 
 Indicadores ficam em uma coluna abaixo de 640px, duas a partir de 640px e quatro a partir de 1280px. Os painéis inferiores ficam lado a lado a partir de 1024px, na proporção 1,6:1.
 

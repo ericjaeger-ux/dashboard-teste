@@ -1,137 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Visão de métricas do produto: receita, assinaturas, cancelamentos, tempo até valor e atividade recente.">
-  <title>Visão de métricas · Painel</title>
-  <link rel="icon" href="data:,">
-  <script>
-    (() => {
-      const savedTheme = localStorage.getItem("metrics-overview-theme");
-      document.documentElement.dataset.theme = savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    })();
-  </script>
-  <link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <!-- Adaptação HTML/CSS de Supernova Catálogo. Ver README.md para a origem. -->
-  <main class="dashboard" id="conteudo">
-    <div class="container">
-      <header class="dashboard-heading">
-        <div>
-          <span class="micro-label">Painel · últimos 30 dias</span>
-          <h1>Como o produto foi este mês</h1>
-        </div>
-        <label class="theme-switch" for="theme-toggle">
-          <span class="theme-switch-label">Modo claro</span>
-          <input class="theme-switch-input" id="theme-toggle" type="checkbox" role="switch">
-          <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
-        </label>
-      </header>
-
-      <div class="metrics" aria-label="Indicadores do produto">
-        <article class="card metric" aria-labelledby="receita">
-          <span class="micro-label" id="receita">Receita</span>
-          <div class="metric-value">R$ 412k</div>
-          <div class="metric-change">
-            <svg class="direction positive" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
-            <span class="change-value positive">+12.4%</span><span>acima vs. 30 dias</span>
-          </div>
-          <svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" role="img" aria-label="Tendência de Receita nas últimas oito semanas.">
-            <polyline class="sparkline-underlay" points="0,28 14.285714285714285,23.03448275862069 28.57142857142857,25.517241379310345 42.857142857142854,19.724137931034484 57.14285714285714,14.758620689655173 71.42857142857143,16.413793103448278 85.71428571428571,9.793103448275865 100,4"/>
-            <polyline points="0,28 14.285714285714285,23.03448275862069 28.57142857142857,25.517241379310345 42.857142857142854,19.724137931034484 57.14285714285714,14.758620689655173 71.42857142857143,16.413793103448278 85.71428571428571,9.793103448275865 100,4"/>
-          </svg>
-        </article>
-        <article class="card metric" aria-labelledby="assinaturas">
-          <span class="micro-label" id="assinaturas">Assinaturas</span>
-          <div class="metric-value">1.284</div>
-          <div class="metric-change">
-            <svg class="direction positive" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg>
-            <span class="change-value positive">+4.1%</span><span>acima vs. 30 dias</span>
-          </div>
-          <svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" role="img" aria-label="Tendência de Assinaturas nas últimas oito semanas.">
-            <polyline class="sparkline-underlay" points="0,28 14.285714285714285,24.307692307692307 28.57142857142857,26.153846153846153 42.857142857142854,18.769230769230766 57.14285714285714,20.615384615384613 71.42857142857143,13.23076923076923 85.71428571428571,7.692307692307693 100,4"/>
-            <polyline points="0,28 14.285714285714285,24.307692307692307 28.57142857142857,26.153846153846153 42.857142857142854,18.769230769230766 57.14285714285714,20.615384615384613 71.42857142857143,13.23076923076923 85.71428571428571,7.692307692307693 100,4"/>
-          </svg>
-        </article>
-        <article class="card metric" aria-labelledby="cancelamentos">
-          <span class="micro-label" id="cancelamentos">Cancelamentos</span>
-          <div class="metric-value">2,1%</div>
-          <div class="metric-change">
-            <svg class="direction" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7v10H7"/></svg>
-            <span class="change-value">-0.6%</span><span>abaixo vs. 30 dias</span>
-          </div>
-          <svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" role="img" aria-label="Tendência de Cancelamentos nas últimas oito semanas.">
-            <polyline class="sparkline-underlay" points="0,8.8 14.285714285714285,13.6 28.57142857142857,4 42.857142857142854,18.4 57.14285714285714,13.6 71.42857142857143,23.2 85.71428571428571,18.4 100,28"/>
-            <polyline points="0,8.8 14.285714285714285,13.6 28.57142857142857,4 42.857142857142854,18.4 57.14285714285714,13.6 71.42857142857143,23.2 85.71428571428571,18.4 100,28"/>
-          </svg>
-        </article>
-        <article class="card metric" aria-labelledby="tempo">
-          <span class="micro-label" id="tempo">Tempo até valor</span>
-          <div class="metric-value">3d 4h</div>
-          <div class="metric-change">
-            <svg class="direction" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7v10H7"/></svg>
-            <span class="change-value">-18.2%</span><span>abaixo vs. 30 dias</span>
-          </div>
-          <svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" role="img" aria-label="Tendência de Tempo até valor nas últimas oito semanas.">
-            <polyline class="sparkline-underlay" points="0,4 14.285714285714285,7.2 28.57142857142857,10.4 42.857142857142854,8.8 57.14285714285714,16.8 71.42857142857143,20 85.71428571428571,23.2 100,28"/>
-            <polyline points="0,4 14.285714285714285,7.2 28.57142857142857,10.4 42.857142857142854,8.8 57.14285714285714,16.8 71.42857142857143,20 85.71428571428571,23.2 100,28"/>
-          </svg>
-        </article>
-      </div>
-
-      <div class="details">
-        <section class="card panel" aria-labelledby="semanas">
-          <span class="micro-label" id="semanas">Receita por semana</span>
-          <div class="weekly-chart">
-            <div class="bars" role="img" aria-label="Receita por semana, oito semanas, com tendência de alta." aria-describedby="dados-semanas">
-              <div class="bar" style="height:47.32824427480916%"></div>
-              <div class="bar" style="height:59.541984732824424%"></div>
-              <div class="bar" style="height:54.19847328244275%"></div>
-              <div class="bar" style="height:71.7557251908397%"></div>
-              <div class="bar" style="height:67.17557251908397%"></div>
-              <div class="bar" style="height:85.49618320610686%"></div>
-              <div class="bar" style="height:79.38931297709924%"></div>
-              <div class="bar" style="height:100%"></div>
-            </div>
-            <div class="chart-labels" aria-hidden="true">
-              <span class="micro-label">S1</span><span class="micro-label">S2</span>
-              <span class="micro-label">S3</span><span class="micro-label">S4</span>
-              <span class="micro-label">S5</span><span class="micro-label">S6</span>
-              <span class="micro-label">S7</span><span class="micro-label">S8</span>
-            </div>
-            <p class="sr-only" id="dados-semanas">Valores ilustrativos da série original, sem unidade informada: semana 1: 62; semana 2: 78; semana 3: 71; semana 4: 94; semana 5: 88; semana 6: 112; semana 7: 104; semana 8: 131.</p>
-          </div>
-        </section>
-        <section class="card panel" aria-labelledby="atividade">
-          <span class="micro-label" id="atividade">Atividade</span>
-          <ul class="activity-list">
-            <li><span class="activity-dot" aria-hidden="true"></span><p><span class="person">Marina</span> <span class="activity-action">publicou o tema Aurora</span><span class="activity-time">há 4 min</span></p></li>
-            <li><span class="activity-dot" aria-hidden="true"></span><p><span class="person">Rafael</span> <span class="activity-action">aprovou a revisão do bloco de preços</span><span class="activity-time">há 26 min</span></p></li>
-            <li><span class="activity-dot" aria-hidden="true"></span><p><span class="person">Ana</span> <span class="activity-action">abriu 3 chamados de acessibilidade</span><span class="activity-time">há 1 h</span></p></li>
-            <li><span class="activity-dot" aria-hidden="true"></span><p><span class="person">Pedro</span> <span class="activity-action">conectou o registry ao agente</span><span class="activity-time">há 2 h</span></p></li>
-            <li><span class="activity-dot" aria-hidden="true"></span><p><span class="person">Júlia</span> <span class="activity-action">convidou 2 pessoas para o workspace</span><span class="activity-time">há 5 h</span></p></li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  </main>
-  <script>
-    (() => {
-      const toggle = document.querySelector("#theme-toggle");
-      const applyTheme = (theme) => {
-        document.documentElement.dataset.theme = theme;
-        toggle.checked = theme === "light";
-        localStorage.setItem("metrics-overview-theme", theme);
-      };
-      toggle.checked = document.documentElement.dataset.theme === "light";
-      toggle.addEventListener("change", () => applyTheme(toggle.checked ? "light" : "dark"));
-    })();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Visão de métricas do produto com o preset shadcn Luma." />
+    <meta name="color-scheme" content="light dark" />
+    <title>Visão de métricas · Painel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
 
